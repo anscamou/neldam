@@ -42,7 +42,7 @@ relationship OneToOne {
 
 // defining multiple OneToMany relationships with comments
 relationship OneToMany {
-	Customer to Order{order}
+	Customer to Order{customer}
 }
 
 // Set pagination options
