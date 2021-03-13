@@ -37,13 +37,14 @@ enum Language {
 }
 // defining multiple OneToOne relationships
 relationship OneToOne {
-	Customer{user(login) required} to User
+	Customer{user(login) required} to User,
+    Customer{customer} to Order{order}
 }
 
 // defining multiple OneToMany relationships with comments
-relationship OneToMany {
-	Customer to Order{order}
-}
+//relationship OneToMany {
+	//Customer{customer} to Order{order}
+//}
 
 // Set pagination options
 // paginate JobHistory, Employee with infinite-scroll
