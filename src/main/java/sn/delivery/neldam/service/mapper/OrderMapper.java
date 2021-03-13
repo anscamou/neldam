@@ -9,13 +9,11 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Order} and its DTO {@link OrderDTO}.
  */
-@Mapper(componentModel = "spring", uses = {CustomerMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface OrderMapper extends EntityMapper<OrderDTO, Order> {
 
-    @Mapping(source = "order.id", target = "orderId")
-    OrderDTO toDto(Order order);
 
-    @Mapping(source = "orderId", target = "order")
+    @Mapping(target = "order", ignore = true)
     Order toEntity(OrderDTO orderDTO);
 
     default Order fromId(Long id) {

@@ -145,14 +145,6 @@
                         </small>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="neldamApp.order.order" for="field_order">Order</label>
-                    <select class="form-control" id="field_order" name="order" formControlName="orderId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackById">{{ customerOption.id }}</option>
-                    </select>
-                </div>
             </div>
 
             <div>

@@ -39,8 +39,6 @@ public class OrderDTO implements Serializable {
     @NotNull
     private Payment payment;
 
-
-    private Long orderId;
     
     public Long getId() {
         return id;
@@ -130,14 +128,6 @@ public class OrderDTO implements Serializable {
         this.payment = payment;
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long customerId) {
-        this.orderId = customerId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -170,7 +160,6 @@ public class OrderDTO implements Serializable {
             ", addrTo='" + getAddrTo() + "'" +
             ", orderStatus='" + getOrderStatus() + "'" +
             ", payment='" + getPayment() + "'" +
-            ", orderId=" + getOrderId() +
             "}";
     }
 }

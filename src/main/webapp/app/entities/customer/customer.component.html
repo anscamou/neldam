@@ -30,6 +30,7 @@
                     <th scope="col"  jhiSortBy="city"><span jhiTranslate="neldamApp.customer.city">City</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="country"><span jhiTranslate="neldamApp.customer.country">Country</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="userLogin"><span jhiTranslate="neldamApp.customer.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="customerId"><span jhiTranslate="neldamApp.customer.customer">Customer</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -44,6 +45,11 @@
                     <td>{{ customer.country }}</td>
                     <td>
                         {{ customer.userLogin }}
+                    </td>
+                    <td>
+                        <div *ngIf="customer.customerId">
+                            <a [routerLink]="['/order', customer.customerId , 'view']" >{{ customer.customerId }}</a>
+                        </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

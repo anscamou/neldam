@@ -4,11 +4,16 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ICustomer, Customer } from 'app/shared/model/customer.model';
 import { CustomerService } from './customer.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
+import { IOrder } from 'app/shared/model/order.model';
+import { OrderService } from 'app/entities/order/order.service';
+
+type SelectableEntity = IUser | IOrder;
 
 @Component({
   selector: 'jhi-customer-update',
@@ -17,6 +22,7 @@ import { UserService } from 'app/core/user/user.service';
 export class CustomerUpdateComponent implements OnInit {
   isSaving = false;
   users: IUser[] = [];
+  customers: IOrder[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -27,11 +33,13 @@ export class CustomerUpdateComponent implements OnInit {
     city: [null, [Validators.required]],
     country: [null, [Validators.required]],
     userId: [null, Validators.required],
+    customerId: [],
   });
 
   constructor(
     protected customerService: CustomerService,
     protected userService: UserService,
+    protected orderService: OrderService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -41,6 +49,28 @@ export class CustomerUpdateComponent implements OnInit {
       this.updateForm(customer);
 
       this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
+
+      this.orderService
+        .query({ filter: 'order-is-null' })
+        .pipe(
+          map((res: HttpResponse<IOrder[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: IOrder[]) => {
+          if (!customer.customerId) {
+            this.customers = resBody;
+          } else {
+            this.orderService
+              .find(customer.customerId)
+              .pipe(
+                map((subRes: HttpResponse<IOrder>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IOrder[]) => (this.customers = concatRes));
+          }
+        });
     });
   }
 
@@ -54,6 +84,7 @@ export class CustomerUpdateComponent implements OnInit {
       city: customer.city,
       country: customer.country,
       userId: customer.userId,
+      customerId: customer.customerId,
     });
   }
 
@@ -82,6 +113,7 @@ export class CustomerUpdateComponent implements OnInit {
       city: this.editForm.get(['city'])!.value,
       country: this.editForm.get(['country'])!.value,
       userId: this.editForm.get(['userId'])!.value,
+      customerId: this.editForm.get(['customerId'])!.value,
     };
   }
 
@@ -101,7 +133,7 @@ export class CustomerUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: IUser): any {
+  trackById(index: number, item: SelectableEntity): any {
     return item.id;
   }
 }

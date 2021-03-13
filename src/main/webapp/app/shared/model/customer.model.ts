@@ -1,4 +1,3 @@
-import { IOrder } from 'app/shared/model/order.model';
 import { Gender } from 'app/shared/model/enumerations/gender.model';
 
 export interface ICustomer {
@@ -11,7 +10,7 @@ export interface ICustomer {
   country?: string;
   userLogin?: string;
   userId?: number;
-  orders?: IOrder[];
+  customerId?: number;
 }
 
 export class Customer implements ICustomer {
@@ -25,6 +24,6 @@ export class Customer implements ICustomer {
     public country?: string,
     public userLogin?: string,
     public userId?: number,
-    public orders?: IOrder[]
+    public customerId?: number
   ) {}
 }

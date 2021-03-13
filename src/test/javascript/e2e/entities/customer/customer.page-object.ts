@@ -37,6 +37,7 @@ export class CustomerUpdatePage {
   countryInput = element(by.id('field_country'));
 
   userSelect = element(by.id('field_user'));
+  customerSelect = element(by.id('field_customer'));
 
   async getPageTitle(): Promise<string> {
     return this.pageTitle.getAttribute('jhiTranslate');
@@ -108,6 +109,22 @@ export class CustomerUpdatePage {
 
   async getUserSelectedOption(): Promise<string> {
     return await this.userSelect.element(by.css('option:checked')).getText();
+  }
+
+  async customerSelectLastOption(): Promise<void> {
+    await this.customerSelect.all(by.tagName('option')).last().click();
+  }
+
+  async customerSelectOption(option: string): Promise<void> {
+    await this.customerSelect.sendKeys(option);
+  }
+
+  getCustomerSelect(): ElementFinder {
+    return this.customerSelect;
+  }
+
+  async getCustomerSelectedOption(): Promise<string> {
+    return await this.customerSelect.element(by.css('option:checked')).getText();
   }
 
   async save(): Promise<void> {

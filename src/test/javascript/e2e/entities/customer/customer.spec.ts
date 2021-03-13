@@ -52,6 +52,7 @@ describe('Customer e2e test', () => {
             customerUpdatePage.setCityInput('city'),
             customerUpdatePage.setCountryInput('country'),
             customerUpdatePage.userSelectLastOption(),
+            customerUpdatePage.customerSelectLastOption(),
         ]);
 
         expect(await customerUpdatePage.getPhoneInput()).to.eq('phone', 'Expected Phone value to be equals to phone');

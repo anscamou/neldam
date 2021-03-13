@@ -36,6 +36,12 @@
                 <dd>
                     {{ customer.userLogin }}
                 </dd>
+                <dt><span jhiTranslate="neldamApp.customer.customer">Customer</span></dt>
+                <dd>
+                    <div *ngIf="customer.customerId">
+                        <a [routerLink]="['/order', customer.customerId, 'view']">{{ customer.customerId }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

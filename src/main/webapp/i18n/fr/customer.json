@@ -23,7 +23,7 @@
       "city": "City",
       "country": "Country",
       "user": "User",
-      "order": "Order"
+      "customer": "Customer"
     }
   }
 }

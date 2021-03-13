@@ -7,8 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import sn.delivery.neldam.domain.enumeration.Gender;
 
@@ -55,9 +53,9 @@ public class Customer implements Serializable {
     @JoinColumn(unique = true)
     private User user;
 
-    @OneToMany(mappedBy = "order")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Order> orders = new HashSet<>();
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Order customer;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -159,29 +157,17 @@ public class Customer implements Serializable {
         this.user = user;
     }
 
-    public Set<Order> getOrders() {
-        return orders;
+    public Order getCustomer() {
+        return customer;
     }
 
-    public Customer orders(Set<Order> orders) {
-        this.orders = orders;
+    public Customer customer(Order order) {
+        this.customer = order;
         return this;
     }
 
-    public Customer addOrder(Order order) {
-        this.orders.add(order);
-        order.setOrder(this);
-        return this;
-    }
-
-    public Customer removeOrder(Order order) {
-        this.orders.remove(order);
-        order.setOrder(null);
-        return this;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
+    public void setCustomer(Order order) {
+        this.customer = order;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

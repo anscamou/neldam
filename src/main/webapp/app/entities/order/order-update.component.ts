@@ -7,8 +7,6 @@ import { Observable } from 'rxjs';
 
 import { IOrder, Order } from 'app/shared/model/order.model';
 import { OrderService } from './order.service';
-import { ICustomer } from 'app/shared/model/customer.model';
-import { CustomerService } from 'app/entities/customer/customer.service';
 
 @Component({
   selector: 'jhi-order-update',
@@ -16,7 +14,6 @@ import { CustomerService } from 'app/entities/customer/customer.service';
 })
 export class OrderUpdateComponent implements OnInit {
   isSaving = false;
-  customers: ICustomer[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -30,21 +27,13 @@ export class OrderUpdateComponent implements OnInit {
     addrTo: [],
     orderStatus: [null, [Validators.required]],
     payment: [null, [Validators.required]],
-    orderId: [],
   });
 
-  constructor(
-    protected orderService: OrderService,
-    protected customerService: CustomerService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
-  ) {}
+  constructor(protected orderService: OrderService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ order }) => {
       this.updateForm(order);
-
-      this.customerService.query().subscribe((res: HttpResponse<ICustomer[]>) => (this.customers = res.body || []));
     });
   }
 
@@ -61,7 +50,6 @@ export class OrderUpdateComponent implements OnInit {
       addrTo: order.addrTo,
       orderStatus: order.orderStatus,
       payment: order.payment,
-      orderId: order.orderId,
     });
   }
 
@@ -93,7 +81,6 @@ export class OrderUpdateComponent implements OnInit {
       addrTo: this.editForm.get(['addrTo'])!.value,
       orderStatus: this.editForm.get(['orderStatus'])!.value,
       payment: this.editForm.get(['payment'])!.value,
-      orderId: this.editForm.get(['orderId'])!.value,
     };
   }
 
@@ -111,9 +98,5 @@ export class OrderUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: ICustomer): any {
-    return item.id;
   }
 }

@@ -43,10 +43,12 @@
       "ownerSide": true
     },
     {
-      "relationshipType": "one-to-many",
+      "relationshipType": "one-to-one",
       "otherEntityName": "order",
       "otherEntityRelationshipName": "order",
-      "relationshipName": "order"
+      "relationshipName": "customer",
+      "otherEntityField": "id",
+      "ownerSide": true
     }
   ],
   "changelogDate": "20210313145937",

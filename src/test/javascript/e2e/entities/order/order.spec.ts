@@ -51,7 +51,6 @@ describe('Order e2e test', () => {
       orderUpdatePage.setAddrToInput('addrTo'),
       orderUpdatePage.orderStatusSelectLastOption(),
       orderUpdatePage.paymentSelectLastOption(),
-      orderUpdatePage.orderSelectLastOption(),
     ]);
 
     expect(await orderUpdatePage.getDescriptionInput()).to.eq('description', 'Expected Description value to be equals to description');

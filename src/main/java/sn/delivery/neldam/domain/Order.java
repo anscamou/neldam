@@ -1,6 +1,6 @@
 package sn.delivery.neldam.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -66,8 +66,8 @@ public class Order implements Serializable {
     @Column(name = "payment", nullable = false)
     private Payment payment;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = "orders", allowSetters = true)
+    @OneToOne(mappedBy = "customer")
+    @JsonIgnore
     private Customer order;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

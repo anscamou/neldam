@@ -32,6 +32,8 @@ public class CustomerDTO implements Serializable {
     private Long userId;
 
     private String userLogin;
+
+    private Long customerId;
     
     public Long getId() {
         return id;
@@ -105,6 +107,14 @@ public class CustomerDTO implements Serializable {
         this.userLogin = userLogin;
     }
 
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long orderId) {
+        this.customerId = orderId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -135,6 +145,7 @@ public class CustomerDTO implements Serializable {
             ", country='" + getCountry() + "'" +
             ", userId=" + getUserId() +
             ", userLogin='" + getUserLogin() + "'" +
+            ", customerId=" + getCustomerId() +
             "}";
     }
 }

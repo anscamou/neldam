@@ -5,6 +5,7 @@ import sn.delivery.neldam.service.dto.OrderDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,6 +28,12 @@ public interface OrderService {
      * @return the list of entities.
      */
     Page<OrderDTO> findAll(Pageable pageable);
+    /**
+     * Get all the OrderDTO where Order is {@code null}.
+     *
+     * @return the {@link List} of entities.
+     */
+    List<OrderDTO> findAllWhereOrderIsNull();
 
 
     /**
