@@ -9,7 +9,6 @@ export interface ICustomer {
   addressLine2?: string;
   city?: string;
   country?: string;
-  userLogin?: string;
   userId?: number;
   orders?: IOrder[];
 }
@@ -23,7 +22,6 @@ export class Customer implements ICustomer {
     public addressLine2?: string,
     public city?: string,
     public country?: string,
-    public userLogin?: string,
     public userId?: number,
     public orders?: IOrder[]
   ) {}

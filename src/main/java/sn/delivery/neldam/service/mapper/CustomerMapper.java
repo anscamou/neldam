@@ -13,7 +13,6 @@ import org.mapstruct.*;
 public interface CustomerMapper extends EntityMapper<CustomerDTO, Customer> {
 
     @Mapping(source = "user.id", target = "userId")
-    @Mapping(source = "user.login", target = "userLogin")
     CustomerDTO toDto(Customer customer);
 
     @Mapping(source = "userId", target = "user")
