@@ -1,0 +1,59 @@
+enum OrderStatus {
+	VALIDATED, COMPLETED, PAID, PENDING, CANCEL, 
+    DELIVERING, REFUNDED, DELIVERED, CASH_ON_DELIVERY,
+    ACCEPTED, REFUSED
+}
+enum Gender {
+	MALE, FEMALE
+}
+enum Payment {
+	CREDIT_CARD(card), CASH(cash),
+    ORANGE_MONEY(om), WAVE(wave),
+    FREE_MONEY(fm), OTHERS(others)
+}
+entity Customer {
+	gender Gender required
+    phone String required
+    addressLine1 String required
+    addressLine2 String
+    city String required
+    country String required
+}
+
+entity Order {	
+    description String
+    latFrom Double required
+    longFrom Double required
+    addrFrom String 
+    phoneTo String required
+    latTo Double required
+    longTo Double required
+    addrTo String 
+    orderStatus OrderStatus required
+    payment Payment required
+}
+enum Language {
+    FRENCH, ENGLISH
+}
+// defining multiple OneToOne relationships
+relationship OneToOne {
+	Customer{user(login) required} to User
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Customer to Order{order}
+}
+
+// Set pagination options
+// paginate JobHistory, Employee with infinite-scroll
+paginate Order,Customer with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

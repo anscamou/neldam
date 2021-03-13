@@ -1,0 +1,18 @@
+{
+  "neldamApp": {
+    "OrderStatus": {
+      "null": "",
+      "VALIDATED": "VALIDATED",
+      "COMPLETED": "COMPLETED",
+      "PAID": "PAID",
+      "PENDING": "PENDING",
+      "CANCEL": "CANCEL",
+      "DELIVERING": "DELIVERING",
+      "REFUNDED": "REFUNDED",
+      "DELIVERED": "DELIVERED",
+      "CASH_ON_DELIVERY": "CASH_ON_DELIVERY",
+      "ACCEPTED": "ACCEPTED",
+      "REFUSED": "REFUSED"
+    }
+  }
+}

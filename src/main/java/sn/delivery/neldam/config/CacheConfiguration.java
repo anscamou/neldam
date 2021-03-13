@@ -50,6 +50,9 @@ public class CacheConfiguration {
             createCache(cm, sn.delivery.neldam.domain.User.class.getName());
             createCache(cm, sn.delivery.neldam.domain.Authority.class.getName());
             createCache(cm, sn.delivery.neldam.domain.User.class.getName() + ".authorities");
+            createCache(cm, sn.delivery.neldam.domain.Customer.class.getName());
+            createCache(cm, sn.delivery.neldam.domain.Customer.class.getName() + ".orders");
+            createCache(cm, sn.delivery.neldam.domain.Order.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
