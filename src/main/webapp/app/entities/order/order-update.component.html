@@ -1,0 +1,169 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-order-heading" jhiTranslate="neldamApp.order.home.createOrEditLabel">Create or edit a Order</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="neldamApp.order.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="neldamApp.order.latFrom" for="field_latFrom">Lat From</label>
+                    <input type="number" class="form-control" name="latFrom" id="field_latFrom"
+                           formControlName="latFrom"/>
+                    <div *ngIf="editForm.get('latFrom')!.invalid && (editForm.get('latFrom')!.dirty || editForm.get('latFrom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('latFrom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('latFrom')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="neldamApp.order.longFrom" for="field_longFrom">Long From</label>
+                    <input type="number" class="form-control" name="longFrom" id="field_longFrom"
+                           formControlName="longFrom"/>
+                    <div *ngIf="editForm.get('longFrom')!.invalid && (editForm.get('longFrom')!.dirty || editForm.get('longFrom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('longFrom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('longFrom')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="neldamApp.order.addrFrom" for="field_addrFrom">Addr From</label>
+                    <input type="text" class="form-control" name="addrFrom" id="field_addrFrom"
+                           formControlName="addrFrom"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="neldamApp.order.phoneTo" for="field_phoneTo">Phone To</label>
+                    <input type="text" class="form-control" name="phoneTo" id="field_phoneTo"
+                           formControlName="phoneTo"/>
+                    <div *ngIf="editForm.get('phoneTo')!.invalid && (editForm.get('phoneTo')!.dirty || editForm.get('phoneTo')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('phoneTo')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="neldamApp.order.latTo" for="field_latTo">Lat To</label>
+                    <input type="number" class="form-control" name="latTo" id="field_latTo"
+                           formControlName="latTo"/>
+                    <div *ngIf="editForm.get('latTo')!.invalid && (editForm.get('latTo')!.dirty || editForm.get('latTo')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('latTo')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('latTo')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="neldamApp.order.longTo" for="field_longTo">Long To</label>
+                    <input type="number" class="form-control" name="longTo" id="field_longTo"
+                           formControlName="longTo"/>
+                    <div *ngIf="editForm.get('longTo')!.invalid && (editForm.get('longTo')!.dirty || editForm.get('longTo')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('longTo')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('longTo')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="neldamApp.order.addrTo" for="field_addrTo">Addr To</label>
+                    <input type="text" class="form-control" name="addrTo" id="field_addrTo"
+                           formControlName="addrTo"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="neldamApp.order.orderStatus" for="field_orderStatus">Order Status</label>
+                    <select class="form-control" name="orderStatus" formControlName="orderStatus" id="field_orderStatus">
+                        <option value="VALIDATED">{{ 'neldamApp.OrderStatus.VALIDATED' | translate }}</option>
+                        <option value="COMPLETED">{{ 'neldamApp.OrderStatus.COMPLETED' | translate }}</option>
+                        <option value="PAID">{{ 'neldamApp.OrderStatus.PAID' | translate }}</option>
+                        <option value="PENDING">{{ 'neldamApp.OrderStatus.PENDING' | translate }}</option>
+                        <option value="CANCEL">{{ 'neldamApp.OrderStatus.CANCEL' | translate }}</option>
+                        <option value="DELIVERING">{{ 'neldamApp.OrderStatus.DELIVERING' | translate }}</option>
+                        <option value="REFUNDED">{{ 'neldamApp.OrderStatus.REFUNDED' | translate }}</option>
+                        <option value="DELIVERED">{{ 'neldamApp.OrderStatus.DELIVERED' | translate }}</option>
+                        <option value="CASH_ON_DELIVERY">{{ 'neldamApp.OrderStatus.CASH_ON_DELIVERY' | translate }}</option>
+                        <option value="ACCEPTED">{{ 'neldamApp.OrderStatus.ACCEPTED' | translate }}</option>
+                        <option value="REFUSED">{{ 'neldamApp.OrderStatus.REFUSED' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('orderStatus')!.invalid && (editForm.get('orderStatus')!.dirty || editForm.get('orderStatus')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('orderStatus')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="neldamApp.order.payment" for="field_payment">Payment</label>
+                    <select class="form-control" name="payment" formControlName="payment" id="field_payment">
+                        <option value="CREDIT_CARD">{{ 'neldamApp.Payment.CREDIT_CARD' | translate }}</option>
+                        <option value="CASH">{{ 'neldamApp.Payment.CASH' | translate }}</option>
+                        <option value="ORANGE_MONEY">{{ 'neldamApp.Payment.ORANGE_MONEY' | translate }}</option>
+                        <option value="WAVE">{{ 'neldamApp.Payment.WAVE' | translate }}</option>
+                        <option value="FREE_MONEY">{{ 'neldamApp.Payment.FREE_MONEY' | translate }}</option>
+                        <option value="OTHERS">{{ 'neldamApp.Payment.OTHERS' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('payment')!.invalid && (editForm.get('payment')!.dirty || editForm.get('payment')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('payment')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="neldamApp.order.order" for="field_order">Order</label>
+                    <select class="form-control" id="field_order" name="order" formControlName="orderId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackById">{{ customerOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

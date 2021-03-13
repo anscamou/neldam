@@ -1,0 +1,74 @@
+{
+  "name": "Order",
+  "fields": [
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "latFrom",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "longFrom",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "addrFrom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phoneTo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "latTo",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "longTo",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "addrTo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "orderStatus",
+      "fieldType": "OrderStatus",
+      "fieldValues": "VALIDATED,COMPLETED,PAID,PENDING,CANCEL,DELIVERING,REFUNDED,DELIVERED,CASH_ON_DELIVERY,ACCEPTED,REFUSED",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "payment",
+      "fieldType": "Payment",
+      "fieldValues": "CREDIT_CARD (card),CASH (cash),ORANGE_MONEY (om),WAVE (wave),FREE_MONEY (fm),OTHERS (others)",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "customer",
+      "otherEntityRelationshipName": "order",
+      "relationshipName": "order",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20210313150037",
+  "entityTableName": "order",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

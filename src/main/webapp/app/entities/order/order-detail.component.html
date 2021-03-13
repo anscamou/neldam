@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="order">
+            <h2><span jhiTranslate="neldamApp.order.detail.title">Order</span> {{ order.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="neldamApp.order.description">Description</span></dt>
+                <dd>
+                    <span>{{ order.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.order.latFrom">Lat From</span></dt>
+                <dd>
+                    <span>{{ order.latFrom }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.order.longFrom">Long From</span></dt>
+                <dd>
+                    <span>{{ order.longFrom }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.order.addrFrom">Addr From</span></dt>
+                <dd>
+                    <span>{{ order.addrFrom }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.order.phoneTo">Phone To</span></dt>
+                <dd>
+                    <span>{{ order.phoneTo }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.order.latTo">Lat To</span></dt>
+                <dd>
+                    <span>{{ order.latTo }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.order.longTo">Long To</span></dt>
+                <dd>
+                    <span>{{ order.longTo }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.order.addrTo">Addr To</span></dt>
+                <dd>
+                    <span>{{ order.addrTo }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.order.orderStatus">Order Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'neldamApp.OrderStatus.' + order.orderStatus }}">{{ order.orderStatus }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.order.payment">Payment</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'neldamApp.Payment.' + order.payment }}">{{ order.payment }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.order.order">Order</span></dt>
+                <dd>
+                    <div *ngIf="order.orderId">
+                        <a [routerLink]="['/customer', order.orderId, 'view']">{{ order.orderId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/order', order.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
