@@ -30,8 +30,6 @@ public class CustomerDTO implements Serializable {
 
 
     private Long userId;
-
-    private String userLogin;
     
     public Long getId() {
         return id;
@@ -97,14 +95,6 @@ public class CustomerDTO implements Serializable {
         this.userId = userId;
     }
 
-    public String getUserLogin() {
-        return userLogin;
-    }
-
-    public void setUserLogin(String userLogin) {
-        this.userLogin = userLogin;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -134,7 +124,6 @@ public class CustomerDTO implements Serializable {
             ", city='" + getCity() + "'" +
             ", country='" + getCountry() + "'" +
             ", userId=" + getUserId() +
-            ", userLogin='" + getUserLogin() + "'" +
             "}";
     }
 }

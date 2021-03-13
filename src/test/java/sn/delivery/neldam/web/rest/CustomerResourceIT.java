@@ -2,7 +2,6 @@ package sn.delivery.neldam.web.rest;
 
 import sn.delivery.neldam.NeldamApp;
 import sn.delivery.neldam.domain.Customer;
-import sn.delivery.neldam.domain.User;
 import sn.delivery.neldam.repository.CustomerRepository;
 import sn.delivery.neldam.service.CustomerService;
 import sn.delivery.neldam.service.dto.CustomerDTO;
@@ -83,11 +82,6 @@ public class CustomerResourceIT {
             .addressLine2(DEFAULT_ADDRESS_LINE_2)
             .city(DEFAULT_CITY)
             .country(DEFAULT_COUNTRY);
-        // Add required entity
-        User user = UserResourceIT.createEntity(em);
-        em.persist(user);
-        em.flush();
-        customer.setUser(user);
         return customer;
     }
     /**
@@ -104,11 +98,6 @@ public class CustomerResourceIT {
             .addressLine2(UPDATED_ADDRESS_LINE_2)
             .city(UPDATED_CITY)
             .country(UPDATED_COUNTRY);
-        // Add required entity
-        User user = UserResourceIT.createEntity(em);
-        em.persist(user);
-        em.flush();
-        customer.setUser(user);
         return customer;
     }
 
