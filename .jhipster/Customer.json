@@ -45,7 +45,7 @@
     {
       "relationshipType": "one-to-many",
       "otherEntityName": "order",
-      "otherEntityRelationshipName": "order",
+      "otherEntityRelationshipName": "customer",
       "relationshipName": "order"
     }
   ],

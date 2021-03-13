@@ -40,7 +40,7 @@ public class OrderDTO implements Serializable {
     private Payment payment;
 
 
-    private Long orderId;
+    private Long customerId;
     
     public Long getId() {
         return id;
@@ -130,12 +130,12 @@ public class OrderDTO implements Serializable {
         this.payment = payment;
     }
 
-    public Long getOrderId() {
-        return orderId;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setOrderId(Long customerId) {
-        this.orderId = customerId;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     @Override
@@ -170,7 +170,7 @@ public class OrderDTO implements Serializable {
             ", addrTo='" + getAddrTo() + "'" +
             ", orderStatus='" + getOrderStatus() + "'" +
             ", payment='" + getPayment() + "'" +
-            ", orderId=" + getOrderId() +
+            ", customerId=" + getCustomerId() +
             "}";
     }
 }

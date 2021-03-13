@@ -33,7 +33,7 @@
                     <th scope="col"  jhiSortBy="addrTo"><span jhiTranslate="neldamApp.order.addrTo">Addr To</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="orderStatus"><span jhiTranslate="neldamApp.order.orderStatus">Order Status</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="payment"><span jhiTranslate="neldamApp.order.payment">Payment</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="orderId"><span jhiTranslate="neldamApp.order.order">Order</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="customerId"><span jhiTranslate="neldamApp.order.customer">Customer</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -51,8 +51,8 @@
                     <td jhiTranslate="{{ 'neldamApp.OrderStatus.' + order.orderStatus }}">{{ order.orderStatus }}</td>
                     <td jhiTranslate="{{ 'neldamApp.Payment.' + order.payment }}">{{ order.payment }}</td>
                     <td>
-                        <div *ngIf="order.orderId">
-                            <a [routerLink]="['/customer', order.orderId , 'view']" >{{ order.orderId }}</a>
+                        <div *ngIf="order.customerId">
+                            <a [routerLink]="['/customer', order.customerId , 'view']" >{{ order.customerId }}</a>
                         </div>
                     </td>
                     <td class="text-right">

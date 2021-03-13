@@ -26,7 +26,7 @@
       "addrTo": "Addr To",
       "orderStatus": "Order Status",
       "payment": "Payment",
-      "order": "Order"
+      "customer": "Customer"
     }
   }
 }

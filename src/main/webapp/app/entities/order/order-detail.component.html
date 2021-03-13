@@ -48,10 +48,10 @@
                 <dd>
                     <span jhiTranslate="{{ 'neldamApp.Payment.' + order.payment }}">{{ order.payment }}</span>
                 </dd>
-                <dt><span jhiTranslate="neldamApp.order.order">Order</span></dt>
+                <dt><span jhiTranslate="neldamApp.order.customer">Customer</span></dt>
                 <dd>
-                    <div *ngIf="order.orderId">
-                        <a [routerLink]="['/customer', order.orderId, 'view']">{{ order.orderId }}</a>
+                    <div *ngIf="order.customerId">
+                        <a [routerLink]="['/customer', order.customerId, 'view']">{{ order.customerId }}</a>
                     </div>
                 </dd>
             </dl>

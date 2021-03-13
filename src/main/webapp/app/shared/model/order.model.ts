@@ -13,7 +13,7 @@ export interface IOrder {
   addrTo?: string;
   orderStatus?: OrderStatus;
   payment?: Payment;
-  orderId?: number;
+  customerId?: number;
 }
 
 export class Order implements IOrder {
@@ -29,6 +29,6 @@ export class Order implements IOrder {
     public addrTo?: string,
     public orderStatus?: OrderStatus,
     public payment?: Payment,
-    public orderId?: number
+    public customerId?: number
   ) {}
 }
