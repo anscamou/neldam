@@ -30,7 +30,7 @@ export class OrderUpdateComponent implements OnInit {
     addrTo: [],
     orderStatus: [null, [Validators.required]],
     payment: [null, [Validators.required]],
-    orderId: [],
+    customerId: [],
   });
 
   constructor(
@@ -61,7 +61,7 @@ export class OrderUpdateComponent implements OnInit {
       addrTo: order.addrTo,
       orderStatus: order.orderStatus,
       payment: order.payment,
-      orderId: order.orderId,
+      customerId: order.customerId,
     });
   }
 
@@ -93,7 +93,7 @@ export class OrderUpdateComponent implements OnInit {
       addrTo: this.editForm.get(['addrTo'])!.value,
       orderStatus: this.editForm.get(['orderStatus'])!.value,
       payment: this.editForm.get(['payment'])!.value,
-      orderId: this.editForm.get(['orderId'])!.value,
+      customerId: this.editForm.get(['customerId'])!.value,
     };
   }
 

@@ -40,7 +40,7 @@ export class OrderUpdatePage {
   orderStatusSelect = element(by.id('field_orderStatus'));
   paymentSelect = element(by.id('field_payment'));
 
-  orderSelect = element(by.id('field_order'));
+  customerSelect = element(by.id('field_customer'));
 
   async getPageTitle(): Promise<string> {
     return this.pageTitle.getAttribute('jhiTranslate');
@@ -134,20 +134,20 @@ export class OrderUpdatePage {
     await this.paymentSelect.all(by.tagName('option')).last().click();
   }
 
-  async orderSelectLastOption(): Promise<void> {
-    await this.orderSelect.all(by.tagName('option')).last().click();
+  async customerSelectLastOption(): Promise<void> {
+    await this.customerSelect.all(by.tagName('option')).last().click();
   }
 
-  async orderSelectOption(option: string): Promise<void> {
-    await this.orderSelect.sendKeys(option);
+  async customerSelectOption(option: string): Promise<void> {
+    await this.customerSelect.sendKeys(option);
   }
 
-  getOrderSelect(): ElementFinder {
-    return this.orderSelect;
+  getCustomerSelect(): ElementFinder {
+    return this.customerSelect;
   }
 
-  async getOrderSelectedOption(): Promise<string> {
-    return await this.orderSelect.element(by.css('option:checked')).getText();
+  async getCustomerSelectedOption(): Promise<string> {
+    return await this.customerSelect.element(by.css('option:checked')).getText();
   }
 
   async save(): Promise<void> {

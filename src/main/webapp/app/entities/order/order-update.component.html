@@ -147,8 +147,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="neldamApp.order.order" for="field_order">Order</label>
-                    <select class="form-control" id="field_order" name="order" formControlName="orderId">
+                    <label class="form-control-label" jhiTranslate="neldamApp.order.customer" for="field_customer">Customer</label>
+                    <select class="form-control" id="field_customer" name="customer" formControlName="customerId">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackById">{{ customerOption.id }}</option>
                     </select>

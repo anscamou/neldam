@@ -55,7 +55,7 @@ public class Customer implements Serializable {
     @JoinColumn(unique = true)
     private User user;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "customer")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Order> orders = new HashSet<>();
 
@@ -170,13 +170,13 @@ public class Customer implements Serializable {
 
     public Customer addOrder(Order order) {
         this.orders.add(order);
-        order.setOrder(this);
+        order.setCustomer(this);
         return this;
     }
 
     public Customer removeOrder(Order order) {
         this.orders.remove(order);
-        order.setOrder(null);
+        order.setCustomer(null);
         return this;
     }
 
