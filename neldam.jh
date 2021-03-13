@@ -37,7 +37,7 @@ enum Language {
 }
 // defining multiple OneToOne relationships
 relationship OneToOne {
-	Customer{user(login) required} to User
+	Customer{user} to User
 }
 
 // defining multiple OneToMany relationships with comments
