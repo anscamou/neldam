@@ -38,8 +38,8 @@ export class OrderUpdatePage {
   longToInput = element(by.id('field_longTo'));
   addrToInput = element(by.id('field_addrTo'));
   orderStatusSelect = element(by.id('field_orderStatus'));
-  paymentSelect = element(by.id('field_payment'));
 
+  orderSelect = element(by.id('field_order'));
   customerSelect = element(by.id('field_customer'));
 
   async getPageTitle(): Promise<string> {
@@ -122,16 +122,20 @@ export class OrderUpdatePage {
     await this.orderStatusSelect.all(by.tagName('option')).last().click();
   }
 
-  async setPaymentSelect(payment: string): Promise<void> {
-    await this.paymentSelect.sendKeys(payment);
+  async orderSelectLastOption(): Promise<void> {
+    await this.orderSelect.all(by.tagName('option')).last().click();
   }
 
-  async getPaymentSelect(): Promise<string> {
-    return await this.paymentSelect.element(by.css('option:checked')).getText();
+  async orderSelectOption(option: string): Promise<void> {
+    await this.orderSelect.sendKeys(option);
   }
 
-  async paymentSelectLastOption(): Promise<void> {
-    await this.paymentSelect.all(by.tagName('option')).last().click();
+  getOrderSelect(): ElementFinder {
+    return this.orderSelect;
+  }
+
+  async getOrderSelectedOption(): Promise<string> {
+    return await this.orderSelect.element(by.css('option:checked')).getText();
   }
 
   async customerSelectLastOption(): Promise<void> {

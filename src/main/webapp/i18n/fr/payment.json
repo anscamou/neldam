@@ -1,13 +1,27 @@
 {
   "neldamApp": {
-    "Payment": {
-      "null": "",
-      "CREDIT_CARD": "card",
-      "CASH": "cash",
-      "ORANGE_MONEY": "om",
-      "WAVE": "wave",
-      "FREE_MONEY": "fm",
-      "OTHERS": "others"
+    "payment": {
+      "home": {
+        "title": "Payments",
+        "createLabel": "Créer un nouveau Payment",
+        "createOrEditLabel": "Créer ou éditer un Payment",
+        "notFound": "Aucun Payment trouvé"
+      },
+      "created": "Un nouveau Payment a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Payment avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Payment avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Payment {{ id }} ?"
+      },
+      "detail": {
+        "title": "Payment"
+      },
+      "placeDate": "Place Date",
+      "totalPrice": "Total Price",
+      "payment": "Payment",
+      "paymentReference": "Payment Reference",
+      "paymentStatus": "Payment Status",
+      "message": "Message"
     }
   }
 }

@@ -50,7 +50,7 @@ describe('Order e2e test', () => {
       orderUpdatePage.setLongToInput('5'),
       orderUpdatePage.setAddrToInput('addrTo'),
       orderUpdatePage.orderStatusSelectLastOption(),
-      orderUpdatePage.paymentSelectLastOption(),
+      orderUpdatePage.orderSelectLastOption(),
       orderUpdatePage.customerSelectLastOption(),
     ]);
 

@@ -44,9 +44,11 @@
                 <dd>
                     <span jhiTranslate="{{ 'neldamApp.OrderStatus.' + order.orderStatus }}">{{ order.orderStatus }}</span>
                 </dd>
-                <dt><span jhiTranslate="neldamApp.order.payment">Payment</span></dt>
+                <dt><span jhiTranslate="neldamApp.order.order">Order</span></dt>
                 <dd>
-                    <span jhiTranslate="{{ 'neldamApp.Payment.' + order.payment }}">{{ order.payment }}</span>
+                    <div *ngIf="order.orderId">
+                        <a [routerLink]="['/payment', order.orderId, 'view']">{{ order.orderId }}</a>
+                    </div>
                 </dd>
                 <dt><span jhiTranslate="neldamApp.order.customer">Customer</span></dt>
                 <dd>

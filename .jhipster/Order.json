@@ -43,15 +43,17 @@
       "fieldType": "OrderStatus",
       "fieldValues": "VALIDATED,COMPLETED,PAID,PENDING,CANCEL,DELIVERING,REFUNDED,DELIVERED,CASH_ON_DELIVERY,ACCEPTED,REFUSED",
       "fieldValidateRules": ["required"]
-    },
-    {
-      "fieldName": "payment",
-      "fieldType": "Payment",
-      "fieldValues": "CREDIT_CARD (card),CASH (cash),ORANGE_MONEY (om),WAVE (wave),FREE_MONEY (fm),OTHERS (others)",
-      "fieldValidateRules": ["required"]
     }
   ],
   "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "payment",
+      "otherEntityRelationshipName": "order",
+      "relationshipName": "order",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
     {
       "relationshipType": "many-to-one",
       "otherEntityName": "customer",

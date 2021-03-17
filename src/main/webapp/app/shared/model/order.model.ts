@@ -1,5 +1,4 @@
 import { OrderStatus } from 'app/shared/model/enumerations/order-status.model';
-import { Payment } from 'app/shared/model/enumerations/payment.model';
 
 export interface IOrder {
   id?: number;
@@ -12,7 +11,7 @@ export interface IOrder {
   longTo?: number;
   addrTo?: string;
   orderStatus?: OrderStatus;
-  payment?: Payment;
+  orderId?: number;
   customerId?: number;
 }
 
@@ -28,7 +27,7 @@ export class Order implements IOrder {
     public longTo?: number,
     public addrTo?: string,
     public orderStatus?: OrderStatus,
-    public payment?: Payment,
+    public orderId?: number,
     public customerId?: number
   ) {}
 }

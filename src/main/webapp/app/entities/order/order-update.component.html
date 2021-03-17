@@ -129,21 +129,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="neldamApp.order.payment" for="field_payment">Payment</label>
-                    <select class="form-control" name="payment" formControlName="payment" id="field_payment">
-                        <option value="CREDIT_CARD">{{ 'neldamApp.Payment.CREDIT_CARD' | translate }}</option>
-                        <option value="CASH">{{ 'neldamApp.Payment.CASH' | translate }}</option>
-                        <option value="ORANGE_MONEY">{{ 'neldamApp.Payment.ORANGE_MONEY' | translate }}</option>
-                        <option value="WAVE">{{ 'neldamApp.Payment.WAVE' | translate }}</option>
-                        <option value="FREE_MONEY">{{ 'neldamApp.Payment.FREE_MONEY' | translate }}</option>
-                        <option value="OTHERS">{{ 'neldamApp.Payment.OTHERS' | translate }}</option>
+                    <label class="form-control-label" jhiTranslate="neldamApp.order.order" for="field_order">Order</label>
+                    <select class="form-control" id="field_order" name="order" formControlName="orderId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="paymentOption.id" *ngFor="let paymentOption of orders; trackBy: trackById">{{ paymentOption.id }}</option>
                     </select>
-                    <div *ngIf="editForm.get('payment')!.invalid && (editForm.get('payment')!.dirty || editForm.get('payment')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('payment')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
                 </div>
 
                 <div class="form-group">

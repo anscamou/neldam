@@ -12,6 +12,10 @@ import { RouterModule } from '@angular/router';
         path: 'order',
         loadChildren: () => import('./order/order.module').then(m => m.NeldamOrderModule),
       },
+      {
+        path: 'payment',
+        loadChildren: () => import('./payment/payment.module').then(m => m.NeldamPaymentModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],
