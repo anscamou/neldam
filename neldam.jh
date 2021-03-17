@@ -6,10 +6,13 @@ enum OrderStatus {
 enum Gender {
 	MALE, FEMALE
 }
-enum Payment {
+enum PaymentType {
 	CREDIT_CARD(card), CASH(cash),
     ORANGE_MONEY(om), WAVE(wave),
     FREE_MONEY(fm), OTHERS(others)
+}
+enum PaymentStatus {
+	VALIDE, KO, EN_COURS
 }
 entity Customer {
 	gender Gender required
@@ -19,7 +22,6 @@ entity Customer {
     city String required
     country String required
 }
-
 entity Order {	
     description String
     latFrom Double required
@@ -28,9 +30,16 @@ entity Order {
     phoneTo String required
     latTo Double required
     longTo Double required
-    addrTo String 
+    addrTo String
     orderStatus OrderStatus required
-    payment Payment required
+}
+entity Payment {
+	placeDate Instant required
+    totalPrice BigDecimal required min(0)
+    payment PaymentType required
+    paymentReference String
+    paymentStatus PaymentStatus
+    message String
 }
 enum Language {
     FRENCH, ENGLISH
@@ -38,8 +47,8 @@ enum Language {
 // defining multiple OneToOne relationships
 relationship OneToOne {
 	Customer{user} to User
+    Order{order} to Payment
 }
-
 // defining multiple OneToMany relationships with comments
 relationship OneToMany {
 	Customer to Order{customer}
