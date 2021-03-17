@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="payment">
+            <h2><span jhiTranslate="neldamApp.payment.detail.title">Payment</span> {{ payment.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="neldamApp.payment.placeDate">Place Date</span></dt>
+                <dd>
+                    <span>{{ payment.placeDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.payment.totalPrice">Total Price</span></dt>
+                <dd>
+                    <span>{{ payment.totalPrice }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.payment.payment">Payment</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'neldamApp.PaymentType.' + payment.payment }}">{{ payment.payment }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.payment.paymentReference">Payment Reference</span></dt>
+                <dd>
+                    <span>{{ payment.paymentReference }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.payment.paymentStatus">Payment Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'neldamApp.PaymentStatus.' + payment.paymentStatus }}">{{ payment.paymentStatus }}</span>
+                </dd>
+                <dt><span jhiTranslate="neldamApp.payment.message">Message</span></dt>
+                <dd>
+                    <span>{{ payment.message }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/payment', payment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

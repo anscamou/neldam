@@ -1,0 +1,10 @@
+{
+  "neldamApp": {
+    "PaymentStatus": {
+      "null": "",
+      "VALIDE": "VALIDE",
+      "KO": "KO",
+      "EN_COURS": "EN_COURS"
+    }
+  }
+}

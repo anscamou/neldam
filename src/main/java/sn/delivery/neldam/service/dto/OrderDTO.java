@@ -3,7 +3,6 @@ package sn.delivery.neldam.service.dto;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import sn.delivery.neldam.domain.enumeration.OrderStatus;
-import sn.delivery.neldam.domain.enumeration.Payment;
 
 /**
  * A DTO for the {@link sn.delivery.neldam.domain.Order} entity.
@@ -36,9 +35,8 @@ public class OrderDTO implements Serializable {
     @NotNull
     private OrderStatus orderStatus;
 
-    @NotNull
-    private Payment payment;
 
+    private Long orderId;
 
     private Long customerId;
     
@@ -122,12 +120,12 @@ public class OrderDTO implements Serializable {
         this.orderStatus = orderStatus;
     }
 
-    public Payment getPayment() {
-        return payment;
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    public void setOrderId(Long paymentId) {
+        this.orderId = paymentId;
     }
 
     public Long getCustomerId() {
@@ -169,7 +167,7 @@ public class OrderDTO implements Serializable {
             ", longTo=" + getLongTo() +
             ", addrTo='" + getAddrTo() + "'" +
             ", orderStatus='" + getOrderStatus() + "'" +
-            ", payment='" + getPayment() + "'" +
+            ", orderId=" + getOrderId() +
             ", customerId=" + getCustomerId() +
             "}";
     }

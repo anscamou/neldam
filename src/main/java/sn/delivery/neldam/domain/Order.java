@@ -11,8 +11,6 @@ import java.io.Serializable;
 
 import sn.delivery.neldam.domain.enumeration.OrderStatus;
 
-import sn.delivery.neldam.domain.enumeration.Payment;
-
 /**
  * A Order.
  */
@@ -61,10 +59,9 @@ public class Order implements Serializable {
     @Column(name = "order_status", nullable = false)
     private OrderStatus orderStatus;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "payment", nullable = false)
-    private Payment payment;
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Payment order;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "orders", allowSetters = true)
@@ -196,17 +193,17 @@ public class Order implements Serializable {
         this.orderStatus = orderStatus;
     }
 
-    public Payment getPayment() {
-        return payment;
+    public Payment getOrder() {
+        return order;
     }
 
-    public Order payment(Payment payment) {
-        this.payment = payment;
+    public Order order(Payment payment) {
+        this.order = payment;
         return this;
     }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    public void setOrder(Payment payment) {
+        this.order = payment;
     }
 
     public Customer getCustomer() {
@@ -253,7 +250,6 @@ public class Order implements Serializable {
             ", longTo=" + getLongTo() +
             ", addrTo='" + getAddrTo() + "'" +
             ", orderStatus='" + getOrderStatus() + "'" +
-            ", payment='" + getPayment() + "'" +
             "}";
     }
 }

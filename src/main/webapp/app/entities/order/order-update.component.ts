@@ -4,11 +4,16 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { IOrder, Order } from 'app/shared/model/order.model';
 import { OrderService } from './order.service';
+import { IPayment } from 'app/shared/model/payment.model';
+import { PaymentService } from 'app/entities/payment/payment.service';
 import { ICustomer } from 'app/shared/model/customer.model';
 import { CustomerService } from 'app/entities/customer/customer.service';
+
+type SelectableEntity = IPayment | ICustomer;
 
 @Component({
   selector: 'jhi-order-update',
@@ -16,6 +21,7 @@ import { CustomerService } from 'app/entities/customer/customer.service';
 })
 export class OrderUpdateComponent implements OnInit {
   isSaving = false;
+  orders: IPayment[] = [];
   customers: ICustomer[] = [];
 
   editForm = this.fb.group({
@@ -29,12 +35,13 @@ export class OrderUpdateComponent implements OnInit {
     longTo: [null, [Validators.required]],
     addrTo: [],
     orderStatus: [null, [Validators.required]],
-    payment: [null, [Validators.required]],
+    orderId: [],
     customerId: [],
   });
 
   constructor(
     protected orderService: OrderService,
+    protected paymentService: PaymentService,
     protected customerService: CustomerService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -43,6 +50,28 @@ export class OrderUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ order }) => {
       this.updateForm(order);
+
+      this.paymentService
+        .query({ filter: 'order-is-null' })
+        .pipe(
+          map((res: HttpResponse<IPayment[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: IPayment[]) => {
+          if (!order.orderId) {
+            this.orders = resBody;
+          } else {
+            this.paymentService
+              .find(order.orderId)
+              .pipe(
+                map((subRes: HttpResponse<IPayment>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IPayment[]) => (this.orders = concatRes));
+          }
+        });
 
       this.customerService.query().subscribe((res: HttpResponse<ICustomer[]>) => (this.customers = res.body || []));
     });
@@ -60,7 +89,7 @@ export class OrderUpdateComponent implements OnInit {
       longTo: order.longTo,
       addrTo: order.addrTo,
       orderStatus: order.orderStatus,
-      payment: order.payment,
+      orderId: order.orderId,
       customerId: order.customerId,
     });
   }
@@ -92,7 +121,7 @@ export class OrderUpdateComponent implements OnInit {
       longTo: this.editForm.get(['longTo'])!.value,
       addrTo: this.editForm.get(['addrTo'])!.value,
       orderStatus: this.editForm.get(['orderStatus'])!.value,
-      payment: this.editForm.get(['payment'])!.value,
+      orderId: this.editForm.get(['orderId'])!.value,
       customerId: this.editForm.get(['customerId'])!.value,
     };
   }
@@ -113,7 +142,7 @@ export class OrderUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: ICustomer): any {
+  trackById(index: number, item: SelectableEntity): any {
     return item.id;
   }
 }

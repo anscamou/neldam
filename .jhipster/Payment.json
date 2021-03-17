@@ -1,0 +1,47 @@
+{
+  "name": "Payment",
+  "fields": [
+    {
+      "fieldName": "placeDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "totalPrice",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "payment",
+      "fieldType": "PaymentType",
+      "fieldValues": "CREDIT_CARD (card),CASH (cash),ORANGE_MONEY (om),WAVE (wave),FREE_MONEY (fm),OTHERS (others)",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "paymentReference",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "paymentStatus",
+      "fieldType": "PaymentStatus",
+      "fieldValues": "VALIDE,KO,EN_COURS"
+    },
+    {
+      "fieldName": "message",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210317190615",
+  "entityTableName": "payment",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

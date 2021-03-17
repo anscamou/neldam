@@ -9,6 +9,7 @@
         "main": "Entités",
         "customer": "Customer",
         "order": "Order",
+        "payment": "Payment",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

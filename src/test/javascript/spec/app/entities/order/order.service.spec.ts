@@ -3,7 +3,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { OrderService } from 'app/entities/order/order.service';
 import { IOrder, Order } from 'app/shared/model/order.model';
 import { OrderStatus } from 'app/shared/model/enumerations/order-status.model';
-import { Payment } from 'app/shared/model/enumerations/payment.model';
 
 describe('Service Tests', () => {
   describe('Order Service', () => {
@@ -22,7 +21,7 @@ describe('Service Tests', () => {
       service = injector.get(OrderService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Order(0, 'AAAAAAA', 0, 0, 'AAAAAAA', 'AAAAAAA', 0, 0, 'AAAAAAA', OrderStatus.VALIDATED, Payment.CREDIT_CARD);
+      elemDefault = new Order(0, 'AAAAAAA', 0, 0, 'AAAAAAA', 'AAAAAAA', 0, 0, 'AAAAAAA', OrderStatus.VALIDATED);
     });
 
     describe('Service methods', () => {
@@ -65,7 +64,6 @@ describe('Service Tests', () => {
             longTo: 1,
             addrTo: 'BBBBBB',
             orderStatus: 'BBBBBB',
-            payment: 'BBBBBB',
           },
           elemDefault
         );
@@ -91,7 +89,6 @@ describe('Service Tests', () => {
             longTo: 1,
             addrTo: 'BBBBBB',
             orderStatus: 'BBBBBB',
-            payment: 'BBBBBB',
           },
           elemDefault
         );

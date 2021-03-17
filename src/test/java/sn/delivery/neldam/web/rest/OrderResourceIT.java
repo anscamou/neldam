@@ -25,7 +25,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import sn.delivery.neldam.domain.enumeration.OrderStatus;
-import sn.delivery.neldam.domain.enumeration.Payment;
 /**
  * Integration tests for the {@link OrderResource} REST controller.
  */
@@ -61,9 +60,6 @@ public class OrderResourceIT {
     private static final OrderStatus DEFAULT_ORDER_STATUS = OrderStatus.VALIDATED;
     private static final OrderStatus UPDATED_ORDER_STATUS = OrderStatus.COMPLETED;
 
-    private static final Payment DEFAULT_PAYMENT = Payment.CREDIT_CARD;
-    private static final Payment UPDATED_PAYMENT = Payment.CASH;
-
     @Autowired
     private OrderRepository orderRepository;
 
@@ -97,8 +93,7 @@ public class OrderResourceIT {
             .latTo(DEFAULT_LAT_TO)
             .longTo(DEFAULT_LONG_TO)
             .addrTo(DEFAULT_ADDR_TO)
-            .orderStatus(DEFAULT_ORDER_STATUS)
-            .payment(DEFAULT_PAYMENT);
+            .orderStatus(DEFAULT_ORDER_STATUS);
         return order;
     }
     /**
@@ -117,8 +112,7 @@ public class OrderResourceIT {
             .latTo(UPDATED_LAT_TO)
             .longTo(UPDATED_LONG_TO)
             .addrTo(UPDATED_ADDR_TO)
-            .orderStatus(UPDATED_ORDER_STATUS)
-            .payment(UPDATED_PAYMENT);
+            .orderStatus(UPDATED_ORDER_STATUS);
         return order;
     }
 
@@ -151,7 +145,6 @@ public class OrderResourceIT {
         assertThat(testOrder.getLongTo()).isEqualTo(DEFAULT_LONG_TO);
         assertThat(testOrder.getAddrTo()).isEqualTo(DEFAULT_ADDR_TO);
         assertThat(testOrder.getOrderStatus()).isEqualTo(DEFAULT_ORDER_STATUS);
-        assertThat(testOrder.getPayment()).isEqualTo(DEFAULT_PAYMENT);
     }
 
     @Test
@@ -297,26 +290,6 @@ public class OrderResourceIT {
 
     @Test
     @Transactional
-    public void checkPaymentIsRequired() throws Exception {
-        int databaseSizeBeforeTest = orderRepository.findAll().size();
-        // set the field null
-        order.setPayment(null);
-
-        // Create the Order, which fails.
-        OrderDTO orderDTO = orderMapper.toDto(order);
-
-
-        restOrderMockMvc.perform(post("/api/orders")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(orderDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Order> orderList = orderRepository.findAll();
-        assertThat(orderList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllOrders() throws Exception {
         // Initialize the database
         orderRepository.saveAndFlush(order);
@@ -334,8 +307,7 @@ public class OrderResourceIT {
             .andExpect(jsonPath("$.[*].latTo").value(hasItem(DEFAULT_LAT_TO.doubleValue())))
             .andExpect(jsonPath("$.[*].longTo").value(hasItem(DEFAULT_LONG_TO.doubleValue())))
             .andExpect(jsonPath("$.[*].addrTo").value(hasItem(DEFAULT_ADDR_TO)))
-            .andExpect(jsonPath("$.[*].orderStatus").value(hasItem(DEFAULT_ORDER_STATUS.toString())))
-            .andExpect(jsonPath("$.[*].payment").value(hasItem(DEFAULT_PAYMENT.toString())));
+            .andExpect(jsonPath("$.[*].orderStatus").value(hasItem(DEFAULT_ORDER_STATUS.toString())));
     }
     
     @Test
@@ -357,8 +329,7 @@ public class OrderResourceIT {
             .andExpect(jsonPath("$.latTo").value(DEFAULT_LAT_TO.doubleValue()))
             .andExpect(jsonPath("$.longTo").value(DEFAULT_LONG_TO.doubleValue()))
             .andExpect(jsonPath("$.addrTo").value(DEFAULT_ADDR_TO))
-            .andExpect(jsonPath("$.orderStatus").value(DEFAULT_ORDER_STATUS.toString()))
-            .andExpect(jsonPath("$.payment").value(DEFAULT_PAYMENT.toString()));
+            .andExpect(jsonPath("$.orderStatus").value(DEFAULT_ORDER_STATUS.toString()));
     }
     @Test
     @Transactional
@@ -389,8 +360,7 @@ public class OrderResourceIT {
             .latTo(UPDATED_LAT_TO)
             .longTo(UPDATED_LONG_TO)
             .addrTo(UPDATED_ADDR_TO)
-            .orderStatus(UPDATED_ORDER_STATUS)
-            .payment(UPDATED_PAYMENT);
+            .orderStatus(UPDATED_ORDER_STATUS);
         OrderDTO orderDTO = orderMapper.toDto(updatedOrder);
 
         restOrderMockMvc.perform(put("/api/orders")
@@ -411,7 +381,6 @@ public class OrderResourceIT {
         assertThat(testOrder.getLongTo()).isEqualTo(UPDATED_LONG_TO);
         assertThat(testOrder.getAddrTo()).isEqualTo(UPDATED_ADDR_TO);
         assertThat(testOrder.getOrderStatus()).isEqualTo(UPDATED_ORDER_STATUS);
-        assertThat(testOrder.getPayment()).isEqualTo(UPDATED_PAYMENT);
     }
 
     @Test
